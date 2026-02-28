@@ -9,9 +9,7 @@
 /*   Updated: 2026/02/11 18:42:23 by aal-moum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <limits.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include "push_swap.h"
 
 static int	is_space(char c)
 {
@@ -22,12 +20,6 @@ static int	is_space(char c)
 static int	is_digit(char c)
 {
 	return (c >= '0' && c <= '9');
-}
-
-static void	error_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit(1);
 }
 
 static const char	*parse_core(const char *s, long long *val, int *sign)

@@ -9,27 +9,14 @@
 /*   Updated: 2026/02/11 16:21:08 by aal-moum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
-static void	init_ps(t_ps *ps)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	ps->a = NULL;
-	ps->b = NULL;
-	ps->size_a = 0;
-	ps->size_b = 0;
-	ps->flag = 0;
-	ps->bench = false;
-}
+	int	i;
 
-int	main(int argc, char **argv)
-{
-	t_ps	ps;
-	int		first_num;
-
-	if (argc == 1)
-		return (0);
-	init_ps(&ps);
-	first_num = parsing(argc, argv, &ps);
-	return (0);
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0')
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

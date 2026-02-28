@@ -13,6 +13,11 @@
 #ifndef PUSH_SWAP
 #define PUSH_SWAP
 
+#include <stdbool.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <limits.h>
+
 typedef	struct		s_stack
 {
 	int				data;
@@ -25,6 +30,13 @@ typedef struct s_ps
 	t_stack	*b;
 	int		size_a;
 	int		size_b;
+	int		flag;
+	bool		bench;
 }			t_ps;
+
+int     ft_atoi_strict(const char *s);
+int     parsing(int ac, char **av, t_ps *ps);
+int     ft_strcmp(const char *s1, const char *s2);
+void	error_exit(void);
 
 #endif
