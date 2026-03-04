@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_split.c                                    :+:      :+:    :+:   */
+/*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,17 +11,20 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_free_split(char **arr)
+int	is_sorted(t_node *a)
 {
-	int	i;
+	t_node	*cur;
 
-	if (!arr)
-		return ;
-	i = 0;
-	while (arr[i])
+	cur = a;
+	if (cur == NULL)
+		error_exit();
+	if (cur->next == NULL)
+		return (1);
+	while (cur->next)
 	{
-		free(arr[i]);
-		i++;
+		if (cur->data > cur->next->data)
+			return (0);
+		cur = cur->next;
 	}
-	free(arr);
+	return (1);
 }

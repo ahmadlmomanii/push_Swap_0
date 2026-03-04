@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   build_stack_a.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,31 +9,39 @@
 /*   Updated: 2026/02/11 16:21:08 by aal-moum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
-static void	init_ps(t_ps *ps)
+void	push_to_stack(char *av, t_ps *ps)
 {
-	ps->a = NULL;
-	ps->b = NULL;
-	ps->size_a = 0;
-	ps->size_b = 0;
-	ps->flag = 0;
-	ps->bench = false;
+	int	value;
+	t_node		*b;
+
+	value = ft_atoi_strict(av);
+	b = new_node(value);
+	node_add_back(&ps->a, b);
+	ps->size_a++;
 }
 
-int	main(int argc, char **argv)
+void	build_stack_a(int i, char **av, t_ps *ps, int ac)
 {
-	t_ps	ps;
-	int		first_num;
+	char	**parts;
+	int		k;
 
-	if (argc == 1)
-		return (0);
-	init_ps(&ps);
-	first_num = parsing(argc, argv, &ps);
-	build_stack_a(first_num, argv, &ps, argc);
-	dup_check(ps.a);
-	if (is_sorted(ps.a))
-		return (stack_free(&ps.a), 0);
-	return (0);
+	while (i < ac)
+	{
+		k = 0;
+		if (has_space(av[i]))
+		{
+			parts = ft_split(av[i], ' ');
+			while (parts[k])
+			{
+				push_to_stack(parts[k], ps);
+				k++;
+			}
+			ft_free_split(parts);
+		}
+		else
+			push_to_stack(av[i], ps);
+		i++;
+	}
 }

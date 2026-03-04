@@ -66,7 +66,10 @@ static int	fill_split(char **res, const char *s, char c)
 			i++;
 		res[j] = copynums(s, start, i);
 		if (!res[j])
+		{
+			res[j] = NULL;
 			return (ft_free_split(res), 0);
+		}
 		j++;
 	}
 	res[j] = NULL;
@@ -78,11 +81,11 @@ char	**ft_split(char const *s, char c)
 	char	**res;
 
 	if (!s)
-		return (NULL);
+		error_exit();
 	res = malloc(sizeof(char *) * (countnums(s, c) + 1));
 	if (!res)
-		return (NULL);
+		error_exit();
 	if (!fill_split(res, s, c))
-		return (NULL);
+		error_exit();
 	return (res);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_split.c                                    :+:      :+:    :+:   */
+/*   check_duplicate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,17 +11,21 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_free_split(char **arr)
+void	dup_check(t_node *a)
 {
-	int	i;
+	t_node	*cur;
+	t_node	*check;
 
-	if (!arr)
-		return ;
-	i = 0;
-	while (arr[i])
+	cur = a;
+	while (cur)
 	{
-		free(arr[i]);
-		i++;
+		check = cur->next;
+		while (check)
+		{
+			if (check->data == cur->data)
+				error_exit();
+			check = check->next;
+		}
+		cur = cur->next;
 	}
-	free(arr);
 }

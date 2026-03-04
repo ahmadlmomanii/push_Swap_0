@@ -18,16 +18,16 @@
 #include <unistd.h>
 #include <limits.h>
 
-typedef	struct		s_stack
+typedef	struct		s_node
 {
 	int				data;
-	struct s_stack	*next;
-}					t_stack;
+	struct s_node	*next;
+}					t_node;
 
 typedef struct s_ps
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_node	*a;
+	t_node	*b;
 	int		size_a;
 	int		size_b;
 	int		flag;
