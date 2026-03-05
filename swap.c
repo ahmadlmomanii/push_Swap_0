@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,20 +11,56 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	is_sorted(t_node *a)
+void	swap(t_node **stack)
 {
-	t_node	*cur;
+	t_node	*first;
+	t_node	*second;
 
-	cur = a;
-	if (!a || !a->next)
-		return (1);
-	if (cur->next == NULL)
-		return (1);
-	while (cur->next)
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	first = *stack;
+	second = first->next;
+	first->next = second->next;
+	second->next = first;
+	*stack = second;
+}
+
+void	sa(t_ps *ps)
+{
+	if (!ps->a || !ps->a->next)
+		return ;
+	swap(&ps->a);
+	if (ps->bench_on)
 	{
-		if (cur->data > cur->next->data)
-			return (0);
-		cur = cur->next;
+		ps->bench.sa++;
+		ps->bench.count++;
 	}
-	return (1);
+	write(1, "sa\n", 3);
+}
+
+void	sb(t_ps *ps)
+{
+	if (!ps->b || !ps->b->next)
+		return ;
+	swap(&ps->b);
+	if (ps->bench_on)
+	{
+		ps->bench.sb++;
+		ps->bench.count++;
+	}
+	write(1, "sb\n", 3);
+}
+
+void	ss(t_ps *ps)
+{
+	if (!ps->a || !ps->a->next || !ps->b || !ps->b->next)
+		return ;
+	swap(&ps->a);
+	swap(&ps->b);
+	if (ps->bench_on)
+	{
+		ps->bench.ss++;
+		ps->bench.count++;
+	}
+	write(1, "ss\n", 3);
 }

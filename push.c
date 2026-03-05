@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,20 +11,44 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	is_sorted(t_node *a)
+void	push(t_node **st_from, t_node **st_to)
 {
-	t_node	*cur;
+	t_node	*tmp;
 
-	cur = a;
-	if (!a || !a->next)
-		return (1);
-	if (cur->next == NULL)
-		return (1);
-	while (cur->next)
+	if (!st_from || !*st_from)
+		return ;
+	tmp = *st_from;
+	*st_from = tmp->next;
+	tmp->next = *st_to;
+	*st_to = tmp;
+}
+
+void	pa(t_ps *ps)
+{
+	if (!ps->b)
+		return ;
+	push(&ps->b, &ps->a);
+	ps->size_a++;
+	ps->size_b--;
+	if (ps->bench_on)
 	{
-		if (cur->data > cur->next->data)
-			return (0);
-		cur = cur->next;
+		ps->bench.pa++;
+		ps->bench.count++;
 	}
-	return (1);
+	write(1, "pa\n", 3);
+}
+
+void	pb(t_ps *ps)
+{
+	if (!ps->a)
+		return ;
+	push(&ps->a, &ps->b);
+	ps->size_a--;
+	ps->size_b++;
+	if (ps->bench_on)
+	{
+		ps->bench.pb++;
+		ps->bench.count++;
+	}
+	write(1, "pb\n", 3);
 }

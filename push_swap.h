@@ -24,14 +24,32 @@ typedef	struct		s_node
 	struct s_node	*next;
 }					t_node;
 
+typedef struct s_bench
+{
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
+	double		disorder;
+	int		count;
+}	t_bench;
+
 typedef struct s_ps
 {
 	t_node	*a;
 	t_node	*b;
+	t_bench	bench;
 	int		size_a;
 	int		size_b;
 	int		flag;
-	bool		bench;
+	bool		bench_on;
 }			t_ps;
 
 int     ft_atoi_strict(const char *s);

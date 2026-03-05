@@ -19,7 +19,8 @@ static void	init_ps(t_ps *ps)
 	ps->size_a = 0;
 	ps->size_b = 0;
 	ps->flag = 0;
-	ps->bench = false;
+	ps->bench_on = false;
+	ps->bench = (t_bench){0};
 }
 
 int	main(int argc, char **argv)

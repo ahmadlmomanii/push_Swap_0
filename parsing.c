@@ -34,7 +34,7 @@ int	parsing(int ac, char **av, t_ps *ps)
 	{
 		if (ft_strcmp(av[i], "--bench") == 0)
 		{
-			ps->bench = true;
+			ps->bench_on = true;
 			i++;
 		}
 		else if (av[i][0] == '-' && av[i][1] == '-')
@@ -48,5 +48,7 @@ int	parsing(int ac, char **av, t_ps *ps)
 		else
 			break ;
 	}
+	if (i >= ac)
+		error_exit();
 	return (i);
 }
