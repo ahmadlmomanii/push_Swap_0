@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   select_strategy.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/11 14:51:00 by aal-moum          #+#    #+#             */
+/*   Updated: 2026/02/11 18:12:35 by aal-moum         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void    select_strategy(t_ps *ps)
+{
+    // إذا لم يحدد المستخدم خوارزمية معينة، نستخدم الوضع التكيفي
+    if (ps->flag == 0) 
+    {
+        if (ps->bench.disorder < 0.2)
+            ps->flag = 1; // Simple O(n^2)
+        else if (ps->bench.disorder < 0.5)
+            ps->flag = 2; // Medium O(n*sqrt(n))
+        else
+            ps->flag = 3; // Complex O(n log n)
+    }
+}
+
+void    execute_sort(t_ps *ps)
+{
+    if (ps->flag == 1)
+        sort_simple(ps);
+    else if (ps->flag == 2)
+        sort_medium(ps);
+    else if (ps->flag == 3)
+        sort_complex(ps);
+}

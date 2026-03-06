@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-#define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include <stdbool.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <limits.h>
+# include <stdbool.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
 
-typedef	struct		s_node
+typedef struct s_node
 {
 	int				data;
 	struct s_node	*next;
-}					t_node;
+}	t_node;
 
 typedef struct s_bench
 {
@@ -37,7 +37,7 @@ typedef struct s_bench
 	int		rra;
 	int		rrb;
 	int		rrr;
-	double		disorder;
+	double	disorder;
 	int		count;
 }	t_bench;
 
@@ -49,12 +49,40 @@ typedef struct s_ps
 	int		size_a;
 	int		size_b;
 	int		flag;
-	bool		bench_on;
-}			t_ps;
+	bool	bench_on;
+}	t_ps;
 
-int     ft_atoi_strict(const char *s);
-int     parsing(int ac, char **av, t_ps *ps);
-int     ft_strcmp(const char *s1, const char *s2);
+int		parsing(int ac, char **av, t_ps *ps);
+void	build_stack_a(int i, char **av, t_ps *ps, int ac);
+void	dup_check(t_node *a);
+int		is_sorted(t_node *a);
 void	error_exit(void);
+int		has_space(char *s);
+
+double	compute_disorder(t_node *a, int size);
+void    select_strategy(t_ps *ps);
+void    execute_sort(t_ps *ps);
+void	ft_putdouble_fd(double n, int fd);
+void    ft_putnbr_fd(long n, int fd);
+
+void	sa(t_ps *ps);
+void	sb(t_ps *ps);
+void	ss(t_ps *ps);
+void	pa(t_ps *ps);
+void	pb(t_ps *ps);
+void	ra(t_ps *ps);
+void	rb(t_ps *ps);
+void	rr(t_ps *ps);
+void	rra(t_ps *ps);
+void	rrb(t_ps *ps);
+void	rrr(t_ps *ps);
+
+int		ft_atoi_strict(const char *s);
+int		ft_strcmp(const char *s1, const char *s2);
+char	**ft_split(char const *s, char c);
+void	ft_free_split(char **arr);
+void	stack_free(t_node **a);
+t_node	*new_node(int value);
+void	node_add_back(t_node **a, t_node *new);
 
 #endif
