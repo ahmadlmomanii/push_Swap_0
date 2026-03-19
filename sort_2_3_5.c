@@ -13,7 +13,7 @@
 
 void	sort_two(t_ps *ps)
 {
-	if (ps->a->value > ps->a->next->value)
+	if (ps->a->data > ps->a->next->data)
 		sa(ps);
 }
 void	sort_three(t_ps *ps)
@@ -22,9 +22,9 @@ void	sort_three(t_ps *ps)
 	int	b;
 	int	c;
 
-	a = ps->a->value;
-	b = ps->a->next->value;
-	c = ps->a->next->next->value;
+	a = ps->a->data;
+	b = ps->a->next->data;
+	c = ps->a->next->next->data;
 	if (a < b && b < c)
 		return ;
 	else if (a > b && a < c)
@@ -51,11 +51,11 @@ int	find_min(t_ps	*ps)
 	int	min;
 
 	cur = ps->a;
-	min = ps->a->value;
+	min = ps->a->data;
 	while (cur)
 	{
-		if (min >  cur->value)
-			min = cur->value;
+		if (min >  cur->data)
+			min = cur->data;
 		cur = cur->next;
 	}
 	return (min);
@@ -66,11 +66,11 @@ void	sort_five(t_ps	*ps)
 	int	m;
 
 	m = find_min(ps);
-	while (m != ps->a->value)
+	while (m != ps->a->data)
 		ra(ps);
 	pb(ps);
 	m = find_min(ps);
-	while (m != ps->a->value)
+	while (m != ps->a->data)
 		ra(ps);
 	pb(ps);
 	sort_three(ps);

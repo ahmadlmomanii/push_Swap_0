@@ -22,7 +22,7 @@ int	ra_or_rra(t_ps *ps, int min)
 	min_index = 0;
 	while(cur)
 	{
-		if (cur->value == min)
+		if (cur->data == min)
 			break ;
 		min_index++;
 		cur = cur->next;
@@ -38,7 +38,7 @@ void	sort_simple(t_ps *ps)
 	{
 		min = find_min(ps);
 		i = ra_or_rra(ps, min);
-		while (ps->a->value != min)
+		while (ps->a->data != min)
 		{
 			if(i)
 				ra(ps);
