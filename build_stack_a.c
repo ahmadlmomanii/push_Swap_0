@@ -13,8 +13,8 @@
 
 void	push_to_stack(char *av, t_ps *ps)
 {
-	int	value;
-	t_node		*b;
+	int		value;
+	t_node	*b;
 
 	value = ft_atoi_strict(av);
 	b = new_node(value);

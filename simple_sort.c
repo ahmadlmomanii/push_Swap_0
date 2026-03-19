@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   simple_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,32 +9,45 @@
 /*   Updated: 2026/02/11 18:12:35 by aal-moum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
-double	compute_disorder(t_node *a, int size)
+int	ra_or_rra(t_ps *ps, int min)
 {
-	t_node	*i_node;
-	t_node	*j_node;
-	long	mistakes;
-	long	total_pairs;
+	int	size;
+	t_node	*cur;
+	int	min_index;
 
-	if (size <= 1)
-		return (0.0);
-	mistakes = 0;
-	total_pairs = 0;
-	i_node = a;
-	while (i_node)
+	size = ps->size_a;
+	cur = ps->a;
+	min_index = 0;
+	while(cur)
 	{
-		j_node = i_node->next;
-		while (j_node)
-		{
-			total_pairs++;
-			if (i_node->data > j_node->data)
-				mistakes++;
-			j_node = j_node->next;
-		}
-		i_node = i_node->next;
+		if (cur->value == min)
+			break ;
+		min_index++;
+		cur = cur->next;
 	}
-	return ((double)mistakes / total_pairs);
+	return ((size/2) >= min_index);
+}
+void	sort_simple(t_ps *ps)
+{
+	int	min;
+	int	i;
+
+	while (ps->size_a > 3)
+	{
+		min = find_min(ps);
+		i = ra_or_rra(ps, min);
+		while (ps->a->value != min)
+		{
+			if(i)
+				ra(ps);
+			else
+				rra(ps);	
+		}
+		pb(ps);
+	}
+	sort_three(ps);
+	while(ps->size_b > 0)
+		pa(ps);
 }

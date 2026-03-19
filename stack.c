@@ -23,7 +23,7 @@ t_node	*new_node(int value)
 	return (node);
 }
 
-void	node_add_back(t_node	**a, t_node	*new)
+void	node_add_back(t_node **a, t_node *new)
 {
 	t_node	*last;
 
@@ -38,7 +38,7 @@ void	node_add_back(t_node	**a, t_node	*new)
 	last->next = new;
 }
 
-void	stack_free(t_node	**a)
+void	stack_free(t_node **a)
 {
 	t_node	*next;
 	t_node	*cur;

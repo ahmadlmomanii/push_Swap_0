@@ -35,7 +35,7 @@ void	ft_putdouble_fd(double n, int fd)
 	// حساب أول خانتين عشريتين (مثلاً 0.4993 تصبح 49)
 	n -= (double)integral;
 	fractional = (long)(n * 100 + 0.5); // إضافة 0.5 للتقريب لأقرب رقم
-	if (fractional >= 100) // حالة خاصة عند التقريب لـ 1.00
+	if (fractional >= 100)              // حالة خاصة عند التقريب لـ 1.00
 		fractional = 99;
 	if (fractional < 10)
 		write(fd, "0", 1);
@@ -44,7 +44,7 @@ void	ft_putdouble_fd(double n, int fd)
 
 void	ft_putnbr_fd(long n, int fd)
 {
-	char	c;
+	char c;
 
 	if (n < 0)
 	{
