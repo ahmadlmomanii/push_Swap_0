@@ -16,6 +16,7 @@ void	sort_two(t_ps *ps)
 	if (ps->a->data > ps->a->next->data)
 		sa(ps);
 }
+
 void	sort_three(t_ps *ps)
 {
 	int	a;
@@ -45,23 +46,23 @@ void	sort_three(t_ps *ps)
 		rra(ps);
 }
 
-int	find_min(t_ps	*ps)
+int	find_min(t_ps *ps)
 {
 	t_node	*cur;
-	int	min;
+	int		min;
 
 	cur = ps->a;
 	min = ps->a->data;
 	while (cur)
 	{
-		if (min >  cur->data)
+		if (min > cur->data)
 			min = cur->data;
 		cur = cur->next;
 	}
 	return (min);
 }
 
-void	sort_five(t_ps	*ps)
+void	sort_five(t_ps *ps)
 {
 	int	m;
 

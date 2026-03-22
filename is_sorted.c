@@ -18,8 +18,6 @@ int	is_sorted(t_node *a)
 	cur = a;
 	if (!a || !a->next)
 		return (1);
-	if (cur->next == NULL)
-		return (1);
 	while (cur->next)
 	{
 		if (cur->data > cur->next->data)

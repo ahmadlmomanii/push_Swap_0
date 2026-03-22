@@ -14,15 +14,14 @@
 
 void	select_strategy(t_ps *ps)
 {
-	// إذا لم يحدد المستخدم خوارزمية معينة، نستخدم الوضع التكيفي
 	if (ps->flag == 0)
 	{
 		if (ps->bench.disorder < 0.2)
-			ps->flag = 1; // Simple O(n^2)
+			ps->flag = 1;
 		else if (ps->bench.disorder < 0.5)
-			ps->flag = 2; // Medium O(n*sqrt(n))
+			ps->flag = 2;
 		else
-			ps->flag = 3; // Complex O(n log n)
+			ps->flag = 3;
 	}
 }
 

@@ -11,7 +11,13 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static int	countnums(const char *s, char c)
+static int	is_sp(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\v'
+		|| c == '\f');
+}
+
+static int	countnums(const char *s)
 {
 	int	i;
 	int	nums;
@@ -20,12 +26,12 @@ static int	countnums(const char *s, char c)
 	nums = 0;
 	while (s[i])
 	{
-		while (s[i] == c)
+		while (s[i] && is_sp(s[i]))
 			i++;
 		if (s[i])
 		{
 			nums++;
-			while (s[i] && s[i] != c)
+			while (s[i] && !is_sp(s[i]))
 				i++;
 		}
 	}
@@ -47,7 +53,7 @@ static char	*copynums(const char *s, int start, int end)
 	return (res);
 }
 
-static int	fill_split(char **res, const char *s, char c)
+static int	fill_split(char **res, const char *s)
 {
 	int	i;
 	int	j;
@@ -57,12 +63,12 @@ static int	fill_split(char **res, const char *s, char c)
 	j = 0;
 	while (s[i])
 	{
-		while (s[i] == c)
+		while (s[i] && is_sp(s[i]))
 			i++;
 		if (!s[i])
 			break ;
 		start = i;
-		while (s[i] && s[i] != c)
+		while (s[i] && !is_sp(s[i]))
 			i++;
 		res[j] = copynums(s, start, i);
 		if (!res[j])
@@ -76,16 +82,16 @@ static int	fill_split(char **res, const char *s, char c)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s)
 {
 	char	**res;
 
 	if (!s)
 		error_exit();
-	res = malloc(sizeof(char *) * (countnums(s, c) + 1));
+	res = malloc(sizeof(char *) * (countnums(s) + 1));
 	if (!res)
 		error_exit();
-	if (!fill_split(res, s, c))
+	if (!fill_split(res, s))
 		error_exit();
 	return (res);
 }

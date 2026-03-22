@@ -13,41 +13,48 @@
 
 int	ra_or_rra(t_ps *ps, int min)
 {
-	int	size;
+	int		size;
 	t_node	*cur;
-	int	min_index;
+	int		min_index;
 
 	size = ps->size_a;
 	cur = ps->a;
 	min_index = 0;
-	while(cur)
+	while (cur)
 	{
 		if (cur->data == min)
 			break ;
 		min_index++;
 		cur = cur->next;
 	}
-	return ((size/2) >= min_index);
+	return ((size / 2) >= min_index);
 }
+
 void	sort_simple(t_ps *ps)
 {
 	int	min;
 	int	i;
 
+	if (ps->size_a <= 2)
+	{
+		if (ps->size_a == 2)
+			sort_two(ps);
+		return ;
+	}
 	while (ps->size_a > 3)
 	{
 		min = find_min(ps);
 		i = ra_or_rra(ps, min);
 		while (ps->a->data != min)
 		{
-			if(i)
+			if (i)
 				ra(ps);
 			else
-				rra(ps);	
+				rra(ps);
 		}
 		pb(ps);
 	}
 	sort_three(ps);
-	while(ps->size_b > 0)
+	while (ps->size_b > 0)
 		pa(ps);
 }

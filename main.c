@@ -38,8 +38,8 @@ void	display_bench(t_ps *ps)
 	write(2, "[bench] total_ops:\n", 19);
 	ft_putnbr_fd(ps->bench.count, 2);
 	write(2, "\n", 1);
-	//write (2, "sa: ", 4);
-	//ft_putnbr_fd(ps->bench->sa, 2);
+	// write (2, "sa: ", 4);
+	// ft_putnbr_fd(ps->bench->sa, 2);
 }
 
 int	main(int argc, char **argv)
@@ -52,16 +52,14 @@ int	main(int argc, char **argv)
 	init_ps(&ps);
 	first_num_idx = parsing(argc, argv, &ps);
 	build_stack_a(first_num_idx, argv, &ps, argc);
+	if (ps->size_a == 0)
+		error_exit();
 	dup_check(ps.a);
 	if (is_sorted(ps.a))
 		return (stack_free(&ps.a), 0);
-	// 1. Disorder Calculation
 	ps.bench.disorder = compute_disorder(ps.a, ps.size_a);
-	// 2. Strategy Selection
 	select_strategy(&ps);
-	// 3. Execution
 	execute_sort(&ps);
-	// 4. Benchmark Output
 	if (ps.bench_on)
 		display_bench(&ps);
 	stack_free(&ps.a);
