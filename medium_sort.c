@@ -96,32 +96,3 @@ void	sort_array(int *arr, int size)
 		i++;
 	}
 }
-
-void	convert_stack(t_ps *ps)
-{
-	int		*arr;
-	t_node	*current;
-	int		i;
-	int		size;
-
-	size = ps->size_a;
-	arr = malloc(sizeof(int) * size);
-	if (!arr)
-		return ;
-	current = ps->a;
-	i = 0;
-	while (current)
-	{
-		arr[i] = current->data;
-		i++;
-		current = current->next;
-	}
-	sort_array(arr, size);
-	current = ps->a;
-	while (current)
-	{
-		current->data = find_index(arr, size, current->data);
-		current = current->next;
-	}
-	free(arr);
-}

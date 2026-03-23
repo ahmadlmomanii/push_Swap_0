@@ -25,17 +25,17 @@ static void	init_ps(t_ps *ps)
 
 void	display_bench(t_ps *ps)
 {
-	write(2, "[bench] disorder:\n", 18);
+	write(2, "[bench] disorder: ", 18);
 	ft_putdouble_fd(ps->bench.disorder * 100, 2);
 	write(2, "%\n", 2);
-	write(2, "[bench] strategy:\n", 18);
+	write(2, "[bench] strategy: ", 18);
 	if (ps->flag == 1)
 		write(2, "Simple / O(n^2)\n", 16);
 	else if (ps->flag == 2)
 		write(2, "Medium / O(n*sqrt(n))\n", 22);
 	else
 		write(2, "Complex / O(n log n)\n", 21);
-	write(2, "[bench] total_ops:\n", 19);
+	write(2, "[bench] total_ops: ", 19);
 	ft_putnbr_fd(ps->bench.count, 2);
 	write(2, "\n", 1);
 	// write (2, "sa: ", 4);
