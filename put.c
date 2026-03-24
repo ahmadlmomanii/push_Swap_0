@@ -9,6 +9,8 @@
 /*   Updated: 2026/02/11 16:21:08 by aal-moum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "push_swap.h"
+
 void	ft_putdouble_fd(double n, int fd)
 {
 	long	integral;

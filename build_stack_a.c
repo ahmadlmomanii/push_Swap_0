@@ -34,7 +34,10 @@ void	build_stack_a(int i, char **av, t_ps *ps, int ac)
 		{
 			parts = ft_split(av[i]);
 			if (!parts[0])
+			{
+				ft_free_split(parts);
 				error_exit();
+			}
 			while (parts[k])
 			{
 				push_to_stack(parts[k], ps);

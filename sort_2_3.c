@@ -61,20 +61,3 @@ int	find_min(t_ps *ps)
 	}
 	return (min);
 }
-
-void	sort_five(t_ps *ps)
-{
-	int	m;
-
-	m = find_min(ps);
-	while (m != ps->a->data)
-		ra(ps);
-	pb(ps);
-	m = find_min(ps);
-	while (m != ps->a->data)
-		ra(ps);
-	pb(ps);
-	sort_three(ps);
-	pa(ps);
-	pa(ps);
-}

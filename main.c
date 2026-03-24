@@ -20,26 +20,8 @@ static void	init_ps(t_ps *ps)
 	ps->size_b = 0;
 	ps->flag = 0;
 	ps->bench_on = false;
+	ps->is_adaptive = 0;
 	ps->bench = (t_bench){0};
-}
-
-void	display_bench(t_ps *ps)
-{
-	write(2, "[bench] disorder: ", 18);
-	ft_putdouble_fd(ps->bench.disorder * 100, 2);
-	write(2, "%\n", 2);
-	write(2, "[bench] strategy: ", 18);
-	if (ps->flag == 1)
-		write(2, "Simple / O(n^2)\n", 16);
-	else if (ps->flag == 2)
-		write(2, "Medium / O(n*sqrt(n))\n", 22);
-	else
-		write(2, "Complex / O(n log n)\n", 21);
-	write(2, "[bench] total_ops: ", 19);
-	ft_putnbr_fd(ps->bench.count, 2);
-	write(2, "\n", 1);
-	// write (2, "sa: ", 4);
-	// ft_putnbr_fd(ps->bench->sa, 2);
 }
 
 int	main(int argc, char **argv)
@@ -52,7 +34,7 @@ int	main(int argc, char **argv)
 	init_ps(&ps);
 	first_num_idx = parsing(argc, argv, &ps);
 	build_stack_a(first_num_idx, argv, &ps, argc);
-	if (ps->size_a == 0)
+	if (ps.size_a == 0)
 		error_exit();
 	dup_check(ps.a);
 	if (is_sorted(ps.a))
