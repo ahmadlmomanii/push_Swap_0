@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_2_3_5.c                                       :+:      :+:    :+:   */
+/*   sort_2_3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 14:51:00 by aal-moum          #+#    #+#             */
-/*   Updated: 2026/02/11 18:12:35 by aal-moum         ###   ########.fr       */
+/*   Updated: 2026/03/26 20:09:24 by aal-moum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -15,6 +15,29 @@ void	sort_two(t_ps *ps)
 {
 	if (ps->a->data > ps->a->next->data)
 		sa(ps);
+}
+
+void	sort_five(t_ps *ps)
+{
+	int	m;
+
+	m = find_min(ps);
+	while (m != ps->a->data)
+	{
+		if (find_index(ps->a, ps->a->size_a, ps->a->data) / 2
+			>= (ps->a->size_a / 2))
+			rra(ps);
+		else
+			ra(pa);
+	}
+	pb(ps);
+	m = find_min(ps);
+	while (m != ps->a->data)
+		ra(ps);
+	pb(ps);
+	sort_three(ps);
+	pa(ps);
+	pa(ps);
 }
 
 void	sort_three(t_ps *ps)
