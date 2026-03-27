@@ -97,8 +97,11 @@ void				execute_sort(t_ps *ps);
 void				sort_simple(t_ps *ps);
 void				sort_two(t_ps *ps);
 void				sort_three(t_ps *ps);
+void				sort_four(t_ps *ps);
+void				sort_five(t_ps *ps);
 int					find_min(t_ps *ps);
 int					ra_or_rra(t_ps *ps, int min);
+void				small_selector(t_ps *ps);
 
 /* medium */
 void				sort_medium(t_ps *ps);
@@ -107,12 +110,14 @@ void				push_and_rotate_b(t_ps *ps);
 int					ft_sqrt(int n);
 int					find_index(int *arr, int size, int data);
 int					find_max(t_node *stack);
+int					index_for_ps(t_node *a, int data);
 int					position(t_node *stack, int value);
 void				sort_array(int *arr, int size);
 
 /* complex */
 void				sort_complex(t_ps *ps);
 int					get_max_bits(int max);
+void				complex_helper(int max_bits, t_ps *ps, int size);
 void				convert_stack(t_ps *ps);
 
 /* ================= BENCH ================= */

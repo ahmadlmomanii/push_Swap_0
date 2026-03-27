@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   complex_sort.c                                     :+:      :+:    :+:   */
+/*   find_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,51 +11,18 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	sort_complex(t_ps *ps)
+int	find_min(t_ps *ps)
 {
-	int	size;
-	int	max_bits;
+	t_node	*cur;
+	int		min;
 
-	if (ps->size_a <= 5)
+	cur = ps->a;
+	min = ps->a->data;
+	while (cur)
 	{
-		small_selector(ps);
-		return ;
+		if (min > cur->data)
+			min = cur->data;
+		cur = cur->next;
 	}
-	convert_stack(ps);
-	size = ps->size_a;
-	max_bits = get_max_bits(size - 1);
-	complex_helper(max_bits, ps, size);
-}
-
-void	complex_helper(int max_bits, t_ps *ps, int size)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < max_bits)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if (((ps->a->data >> i) & 1) == 0)
-				pb(ps);
-			else
-				ra(ps);
-			j++;
-		}
-		while (ps->b)
-			pa(ps);
-		i++;
-	}
-}
-
-int	get_max_bits(int max)
-{
-	int	bits;
-
-	bits = 0;
-	while ((max >> bits) != 0)
-		bits++;
-	return (bits);
+	return (min);
 }

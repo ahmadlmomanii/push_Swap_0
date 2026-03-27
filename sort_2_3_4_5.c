@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_2_3.c                                         :+:      :+:    :+:   */
+/*   sort_2_3_4_5.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-moum <aal-moum@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
+void	five_helper(t_ps *ps, int m);
 
 void	sort_two(t_ps *ps)
 {
@@ -22,22 +24,28 @@ void	sort_five(t_ps *ps)
 	int	m;
 
 	m = find_min(ps);
-	while (m != ps->a->data)
-	{
-		if (find_index(ps->a, ps->a->size_a, ps->a->data) / 2
-			>= (ps->a->size_a / 2))
-			rra(ps);
-		else
-			ra(pa);
-	}
+	five_helper(ps, m);
 	pb(ps);
 	m = find_min(ps);
-	while (m != ps->a->data)
-		ra(ps);
+	five_helper(ps, m);
 	pb(ps);
 	sort_three(ps);
 	pa(ps);
 	pa(ps);
+}
+
+void	five_helper(t_ps *ps, int m)
+{
+	int	index;
+
+	while (ps->a->data != m)
+	{
+		index = index_for_ps(ps->a, m);
+		if (index > ps->size_a / 2)
+			rra(ps);
+		else
+			ra(ps);
+	}
 }
 
 void	sort_three(t_ps *ps)
@@ -69,18 +77,13 @@ void	sort_three(t_ps *ps)
 		rra(ps);
 }
 
-int	find_min(t_ps *ps)
+void	sort_four(t_ps *ps)
 {
-	t_node	*cur;
-	int		min;
+	int	m;
 
-	cur = ps->a;
-	min = ps->a->data;
-	while (cur)
-	{
-		if (min > cur->data)
-			min = cur->data;
-		cur = cur->next;
-	}
-	return (min);
+	m = find_min(ps);
+	five_helper(ps, m);
+	pb(ps);
+	sort_three(ps);
+	pa(ps);
 }

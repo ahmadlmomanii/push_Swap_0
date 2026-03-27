@@ -16,12 +16,9 @@ void	sort_medium(t_ps *ps)
 	int	chunks;
 
 	chunks = ft_sqrt(ps->size_a);
-	if (ps->size_a <= 3)
+	if (ps->size_a <= 5)
 	{
-		if (ps->size_a == 2)
-			sort_two(ps);
-		else if (ps->size_a == 3)
-			sort_three(ps);
+		small_selector(ps);
 		return ;
 	}
 	convert_stack(ps);
